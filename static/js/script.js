@@ -3,11 +3,10 @@
 document.getElementById('searchButton').addEventListener('click', function() {
     const inputText = document.getElementById('inputText').value.trim();
     if (!inputText) {
-        alert('请输入文本后再进行查询。');
+        alert('Please insert words');
         return;
     }
 
-    // 发送POST请求到后端
     fetch('/search', {
         method: 'POST',
         headers: {
@@ -22,38 +21,35 @@ document.getElementById('searchButton').addEventListener('click', function() {
             return;
         }
 
-        // 清空之前的结果
         const resultsList = document.getElementById('resultsList');
         resultsList.innerHTML = '';
 
         const similarities = [];
 
-        // 显示结果
         data.results.forEach(item => {
             const li = document.createElement('li');
             li.innerHTML = `
-                <strong>文档索引：</strong>${item.index}<br>
-                <strong>相似度：</strong>${item.similarity}<br>
-                <strong>文档类别：</strong>${item.category}<br>
-                <strong>文档内容预览：</strong>${item.preview}
+                <strong>Ineex：</strong>${item.index}<br>
+                <strong>Similarity：</strong>${item.similarity}<br>
+                <strong>Category：</strong>${item.category}<br>
+                <strong>Preview：</strong>${item.preview}
             `;
             resultsList.appendChild(li);
             similarities.push(item.similarity);
         });
 
         // 绘制柱状图
-        drawChart(similarities, data.results.map(item => `索引 ${item.index}`));
+        drawChart(similarities, data.results.map(item => `Index ${item.index}`));
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('发生错误，请稍后再试。');
+        alert('Erroe occurs, try again');
     });
 });
 
 function drawChart(similarities, labels) {
     const ctx = document.getElementById('similarityChart').getContext('2d');
 
-    // 如果之前有图表，先销毁
     if (window.similarityBarChart) {
         window.similarityBarChart.destroy();
     }
@@ -63,7 +59,7 @@ function drawChart(similarities, labels) {
         data: {
             labels: labels,
             datasets: [{
-                label: '余弦相似度',
+                label: 'Similarity',
                 data: similarities,
                 backgroundColor: 'rgba(54, 162, 235, 0.6)',
                 borderColor: 'rgba(54, 162, 235, 1)',

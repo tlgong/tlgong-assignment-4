@@ -4,24 +4,23 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>新闻组文档相似度查询</title>
+    <title>LSASearch</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <!-- 引入Chart.js库 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>新闻组文档相似度查询</h1>
-        <textarea id="inputText" placeholder="请输入您的文本..." rows="5"></textarea>
-        <button id="searchButton">查询相似文档</button>
+        <h1>LSASearch</h1>
+        <textarea id="inputText" placeholder="Insert what you looks for..." rows="5"></textarea>
+        <button id="searchButton">Get related decument</button>
 
         <div id="results">
-            <h2>查询结果</h2>
+            <h2>Result</h2>
             <ul id="resultsList"></ul>
         </div>
 
         <div id="chartContainer">
-            <h2>相似度柱状图</h2>
+            <h2>graph</h2>
             <canvas id="similarityChart" width="400" height="200"></canvas>
         </div>
     </div>

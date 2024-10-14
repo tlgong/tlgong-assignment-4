@@ -5,7 +5,6 @@ from main import NewsLSA
 
 app = Flask(__name__)
 
-# 初始化 NewsGroupsSimilarity 类
 similarity_model = NewsLSA()
 
 app = Flask(__name__)
@@ -22,7 +21,7 @@ def search():
     top_n = data.get('top_n', 5)
 
     if not input_text:
-        return jsonify({'error': '输入文本为空。'}), 400
+        return jsonify({'error': 'Empty insert'}), 400
 
     try:
         # 计算相似度
@@ -36,7 +35,7 @@ def search():
         category = similarity_model.get_document_category(idx)
         preview = similarity_model.get_document_preview(idx)
         results.append({
-            'index': int(idx),  # 转换为标准的 int
+            'index': int(idx),
             'similarity': round(float(sim), 4),
             'category': category,
             'preview': preview
@@ -45,7 +44,5 @@ def search():
     return jsonify({'results': results})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = 3000)
 
-if __name__ == '__main__':
-    app.run(debug=True)
