@@ -1,4 +1,3 @@
-
 VENV_DIR = venv
 
 PYTHON = $(VENV_DIR)/bin/python
